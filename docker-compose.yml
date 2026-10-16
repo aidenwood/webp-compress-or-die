@@ -1,0 +1,9 @@
+services:
+  app:
+    container_name: tinywebp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: "IamIsPra/tinywebp:latest"
+    ports:
+      - 3000:80
