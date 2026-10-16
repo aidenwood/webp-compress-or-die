@@ -265,12 +265,16 @@ function Home() {
             <p className="app-eyebrow">AIDXN DESIGN</p>
             <h2 id="aidxn-cta-title">Everything your business needs online.</h2>
             <div className="cta-actions">
-              <a href="https://aidxn.com/services/" target="_blank" rel="noreferrer" className="button-primary">
-                View all services <ArrowRight aria-hidden="true" />
+              <a href="https://aidxn.com/web-design/" target="_blank" rel="noreferrer" className="button-primary">
+                Website Design <ArrowRight aria-hidden="true" />
               </a>
-              <a href="https://aidxn.com/enquire/" target="_blank" rel="noreferrer" className="button-quiet">
-                Start a project
+              <a href="https://ui.aidxn.com/components/" target="_blank" rel="noreferrer" className="button-quiet">
+                VX Components
               </a>
+            </div>
+            <div className="cta-secondary-links">
+              <a href="https://aidxn.com/services/" target="_blank" rel="noreferrer">View all services</a>
+              <a href="https://aidxn.com/enquire/" target="_blank" rel="noreferrer">Start a project</a>
             </div>
           </div>
         </section>
