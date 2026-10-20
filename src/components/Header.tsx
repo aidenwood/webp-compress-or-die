@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import AidxnHeader from '../chrome/AidxnHeader';
+import { AidxnHeader } from '@aidxn/chrome';
 
 interface HeaderProps {
   theme: 'light' | 'dark';
@@ -8,12 +8,12 @@ interface HeaderProps {
 }
 
 /**
- * This app's header is the SHARED Aidxn header plus one app-specific link.
+ * This app's header is the SHARED Aidxn header (`@aidxn/chrome`) plus one
+ * app-specific link.
  *
- * Kept as a thin wrapper rather than swapping `<AidxnHeader>` into all five
- * pages that render a header: the call sites stay untouched, and when
- * src/chrome/ is promoted into the shared brand-chrome package this is the
- * only file in the app that needs to know.
+ * Kept as a thin wrapper rather than importing `<AidxnHeader>` into all five
+ * pages that render a header — the call sites stay untouched, and this is the
+ * only file in the app that needs to know the shared header exists.
  */
 const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => (
   <AidxnHeader appName="Image Compression" theme={theme} toggleTheme={toggleTheme}>

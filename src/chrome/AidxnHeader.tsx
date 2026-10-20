@@ -1,12 +1,20 @@
 /**
+ * GENERATED FILE — DO NOT EDIT.
+ *
+ * Vendored from the @aidxn/chrome package. Edit the original at
+ * aidxn-chrome/src/ and run `npm run sync` there; this copy is overwritten.
+ * A hand-edit here is caught by `npm run chrome:check` and fails the build.
+ */
+/**
  * The shared Aidxn header.
  *
  * WHAT THIS IS FOR
  * Every small Aidxn app was going to grow its own header, and they would have
  * drifted within a month — different nav, different account behaviour,
- * different idea of the brand. This is written to be lifted out of this repo
- * as-is: nothing in `src/chrome/` imports anything app-specific, and the only
- * per-app input is the `appName` prop and the links in aidxnLinks.ts.
+ * different idea of the brand. This package exists so that doesn't happen:
+ * nothing in here imports anything app-specific, and the only per-app input is
+ * the `appName` prop, `children` for app-specific nav, and (optionally)
+ * `supabaseEnv` if an app can't supply `VITE_*`/`PUBLIC_*` env vars directly.
  *
  * THE DESIGN IS AIDXN.COM'S
  * Full width at the top of the page, collapsing into a floating rounded pill
@@ -21,11 +29,22 @@
  * every *.aidxn.com surface shares, so signing in on aidxn.com means this
  * header already knows who you are. See supabaseChrome.ts for why the
  * storageKey must not be touched.
+ *
+ * STYLES
+ * This component only emits classNames — it ships no inline colours or fonts
+ * (house rule: no component-level font-family, no colour overrides). The
+ * accompanying `chrome.css` (import it once, see the README) styles every
+ * class this component renders, and itself defers all colour/surface values
+ * to CSS custom properties the HOST APP must define: `--app-bg`, `--app-text`,
+ * `--app-muted`, `--app-subtle`, `--app-line`, `--app-surface`, `--app-accent`,
+ * `--app-accent-strong`. That's what lets the identical header reskin itself
+ * per app without this package ever choosing a palette.
  */
 import React from 'react';
 import { ChevronDown, LogOut, Moon, Sun } from 'lucide-react';
 import { ACCOUNT_LINKS, AIDXN_TOOLS, SIGN_IN_URL } from './aidxnLinks';
 import { useAidxnAccount } from './useAidxnAccount';
+import type { AidxnChromeEnv } from './env';
 
 /** The Aidxn wireframe globe — the studio's mark. A dozen circles, no asset. */
 const AidxnGlobe: React.FC = () => (
@@ -73,13 +92,18 @@ interface Props {
   toggleTheme: () => void;
   /** App-specific nav, rendered before the shared menus. */
   children?: React.ReactNode;
+  /**
+   * Only needed if the host app can't expose `VITE_SUPABASE_URL`/
+   * `PUBLIC_SUPABASE_URL` (+ anon key) as build-time env vars. See env.ts.
+   */
+  supabaseEnv?: AidxnChromeEnv;
 }
 
-const AidxnHeader: React.FC<Props> = ({ appName, theme, toggleTheme, children }) => {
+const AidxnHeader: React.FC<Props> = ({ appName, theme, toggleTheme, children, supabaseEnv }) => {
   const [scrolled, setScrolled] = React.useState(false);
   const [toolsOpen, setToolsOpen] = React.useState(false);
   const [acctOpen, setAcctOpen] = React.useState(false);
-  const account = useAidxnAccount();
+  const account = useAidxnAccount(supabaseEnv);
 
   const toolsRef = useDismissable(toolsOpen, () => setToolsOpen(false));
   const acctRef = useDismissable(acctOpen, () => setAcctOpen(false));

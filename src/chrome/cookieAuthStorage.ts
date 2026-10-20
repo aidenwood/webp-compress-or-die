@@ -1,4 +1,11 @@
 /**
+ * GENERATED FILE — DO NOT EDIT.
+ *
+ * Vendored from the @aidxn/chrome package. Edit the original at
+ * aidxn-chrome/src/ and run `npm run sync` there; this copy is overwritten.
+ * A hand-edit here is caught by `npm run chrome:check` and fails the build.
+ */
+/**
  * Cross-subdomain Supabase auth storage adapter.
  *
  * Supabase JS persists sessions to localStorage by default, which is
@@ -9,12 +16,12 @@
  * `Domain=.aidxn.com` cookie instead, so one sign-in on any *.aidxn.com
  * surface is visible on all of them.
  *
- * CANONICAL: this file is duplicated byte-for-byte in velocity-x-stock
- * (src/lib/cookieAuthStorage.ts) because the two repos don't share a
- * package. Keep them in sync — same chunking, same cookie shape, same
- * fallback logic. If you change one, change the other. velocity-docs gets a
- * synced copy via `npm run sync:brand-chrome` same as supabaseChrome.ts —
- * don't hand-edit it there.
+ * CANONICAL HOME: this package. velocity-components and velocity-x-stock carry
+ * their own byte-for-byte ports of this same file because they predate this
+ * package and don't (yet) depend on it — see their own header comments. If you
+ * change the chunking, the cookie shape, or the fallback logic here, change it
+ * there too, or sign-in state can silently stop round-tripping between an app
+ * on this package and one on the ported copies.
  *
  * Session JSON frequently exceeds the ~4KB per-cookie limit (access token +
  * refresh token + user object). A silently truncated cookie produces
@@ -35,7 +42,7 @@ import { AIDXN_APEX_HOST } from './aidxnLinks';
 const CHUNK_SIZE = 3300;
 const DAYS_TO_LIVE = 365;
 
-// From the chrome's own config, not hardcoded here — one definition of which
+// From the package's own config, not hardcoded here — one definition of which
 // apex a session is shared across.
 const APEX_HOST = AIDXN_APEX_HOST; // "aidxn.com"
 const COOKIE_DOMAIN = `.${APEX_HOST}`; // ".aidxn.com"
@@ -197,6 +204,6 @@ export function migrateLocalStorageSessionToCookie(storageKey: string): void {
  * Shared storage key across every *.aidxn.com surface. This is deliberately
  * the same value Supabase JS would derive by default for this project ref
  * (`sb-<ref>-auth-token`) — pinned explicitly so a future project-ref change
- * can't silently desync the two repos.
+ * can't silently desync every app on this package.
  */
 export const AIDXN_AUTH_STORAGE_KEY = 'sb-ugiuphqzwyevycsuwaen-auth-token';

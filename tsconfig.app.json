@@ -18,7 +18,15 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Mirrors the vendored-package alias in vite.config.ts — see the comment
+       there for why @aidxn/chrome is vendored rather than installed. */
+    "baseUrl": ".",
+    "paths": {
+      "@aidxn/chrome": ["src/chrome/index.ts"],
+      "@aidxn/chrome/*": ["src/chrome/*"]
+    }
   },
   "include": ["src"]
 }

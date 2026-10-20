@@ -1,27 +1,30 @@
 /**
- * Where this free tool sends people next.
+ * GENERATED FILE — DO NOT EDIT.
  *
- * ONE LIST, used by both the header dropdown and the footer. They were always
- * going to drift as two hand-kept copies, and the footer is the one nobody
- * re-reads.
+ * Vendored from the @aidxn/chrome package. Edit the original at
+ * aidxn-chrome/src/ and run `npm run sync` there; this copy is overwritten.
+ * A hand-edit here is caught by `npm run chrome:check` and fails the build.
+ */
+/**
+ * Where every small Aidxn app sends people next.
  *
- * This is a funnel, not a sitemap. Somebody compressing images here is already
- * building something, so the order runs commercial-first: the paid component
- * library and the design service, then the other free tools that keep them in
- * the ecosystem. "Everything we make" alphabetised would bury the two entries
- * that pay for the rest.
+ * ONE LIST, shared by every consumer's header dropdown (and footer, if the app
+ * chooses to reuse it there) — this was always going to drift as hand-kept
+ * per-app copies, and the footer is the one nobody re-reads.
+ *
+ * This is a funnel, not a sitemap. Somebody on a free tool is already building
+ * something, so the order runs commercial-first: the paid component library
+ * and the design service, then the other free tools that keep them in the
+ * ecosystem. "Everything we make" alphabetised would bury the two entries that
+ * pay for the rest.
  */
 
 /**
  * The apex the SSO cookie is scoped to.
  *
- * In velocity-components this came from that repo's `lib/urls.ts`. Here it
- * lives with the rest of the chrome config so `src/chrome/` has no imports
- * outside itself and can be lifted into the shared package untouched.
- *
  * Changing this changes which hosts share a session. It must stay the APEX —
- * `aidxn.com`, not `webp.aidxn.com` — or the cookie scopes to this subdomain
- * alone and the whole point is lost.
+ * `aidxn.com`, not a subdomain — or the cookie scopes to one host alone and
+ * the whole point of this package is lost.
  */
 export const AIDXN_APEX_HOST = 'aidxn.com';
 
@@ -65,10 +68,11 @@ export const AIDXN_TOOLS: AidxnTool[] = [
 /**
  * The account menu, shown once a session is found.
  *
- * This became real when the tool moved to webp.aidxn.com. The SSO cookie is
- * scoped `Domain=.aidxn.com`, so on the old webp-aidxn.netlify.app address no
- * session could reach it and "Sign in" could only ever be a link out. On the
- * subdomain, a sign-in anywhere on *.aidxn.com is already a sign-in here.
+ * Only real on a *.aidxn.com subdomain — the SSO cookie is scoped
+ * `Domain=.aidxn.com`, so on any other host (a Netlify default domain, a
+ * deploy preview, localhost) no session can reach it and "Sign in" is just a
+ * link out. See the README's SSO constraint section before deploying an app
+ * that uses this package off a *.aidxn.com host.
  */
 export interface AccountLink {
   name: string;

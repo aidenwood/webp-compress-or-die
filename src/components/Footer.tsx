@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AIDXN_TOOLS } from '../chrome/aidxnLinks';
+import { AIDXN_TOOLS } from '@aidxn/chrome';
 
 /**
  * The Aidxn footer, carrying the other tools.

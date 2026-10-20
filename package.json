@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "chrome:check": "node scripts/chrome-check.mjs",
+    "prebuild": "node scripts/chrome-check.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",
