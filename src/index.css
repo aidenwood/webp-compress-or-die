@@ -67,7 +67,17 @@ label:focus-visible {
   min-height: 100vh;
   min-height: 100svh;
   flex-direction: column;
-  overflow: hidden;
+  /* `clip`, NOT `hidden`.
+     
+     `overflow: hidden` makes this element a scroll container, and a
+     `position: sticky` child sticks to its nearest scroll container — so the
+     header stuck to .app-shell, which never scrolls, and rode off the top of
+     the viewport. Measured: header at top:-588px after a 600px scroll.
+     
+     `overflow: clip` clips exactly the same overflow without creating a
+     scroll container, so sticky resolves to the viewport again. This predates
+     the shared header — the old one was sticky too and never actually stuck. */
+  overflow: clip;
   background: var(--app-bg);
   color: var(--app-text);
 }
