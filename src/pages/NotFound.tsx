@@ -28,7 +28,7 @@ const NotFound: React.FC = () => {
         <h1>404</h1>
         <p>That page isn’t here.</p>
         <Link to="/" className="button-primary">
-          <ArrowLeftCircle aria-hidden="true" /> Back to TinyWebP
+          <ArrowLeftCircle aria-hidden="true" /> Back to Tiny WebP
         </Link>
       </main>
       

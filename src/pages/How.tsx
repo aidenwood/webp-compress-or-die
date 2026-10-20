@@ -24,12 +24,12 @@ function How() {
 
       {/* How to Use Content */}
       <main className="app-page app-legal-content">
-        <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">How to Use TinyWebP</h1>
+        <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">How to Use Tiny WebP</h1>
         <p className="text-sm">Author: Isuru Prabath</p>
         <p className="text-sm mb-4">Updated on: 12th February 2025</p>
 
         <p className="mb-4">
-          Welcome to TinyWebP! This tool allows you to easily compress images directly from your browser.
+          Welcome to Tiny WebP! This tool allows you to easily compress images directly from your browser.
           Here's how to use it:
         </p>
 
@@ -40,7 +40,7 @@ function How() {
 
         <h2 className="text-xl font-semibold mt-6 mb-2">2. Wait for Compression</h2>
         <p>
-          TinyWebP will automatically compress the image directly in your browser. This process does not upload your image to our servers.
+          Tiny WebP will automatically compress the image directly in your browser. This process does not upload your image to our servers.
         </p>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">3. Download the Compressed Image</h2>
@@ -58,7 +58,7 @@ function How() {
           <iframe
             className="w-full h-full"
             src="https://www.youtube.com/embed/JBz-vB2-Ykg" // Replace with your YouTube video ID
-            title="TinyWebP - Convert Images to WebP"
+            title="Tiny WebP - Convert Images to WebP"
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen

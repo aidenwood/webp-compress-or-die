@@ -164,10 +164,9 @@ function Home() {
 
       <main className="app-main">
         <section className="home-intro" aria-labelledby="home-title">
-          <p className="app-eyebrow">AIDXN DESIGN · IMAGE TOOL</p>
-          <h1 id="home-title">WebP conversion, kept on your device.</h1>
+          <h1 id="home-title">Tiny WebP Image Compression, Completely Free, Blazing Fast.</h1>
           <p className="home-summary">
-            Convert images in your browser, then download WebP files one by one or together.
+            Compress images in your browser, then download WebP files one by one or together.
           </p>
           <div className="privacy-note"><span aria-hidden="true" />Your images are processed locally. No file upload.</div>
         </section>
@@ -183,7 +182,7 @@ function Home() {
             onDrop={handleDrop}
           >
             <a className="support-link" href="https://buymeacoffee.com/iamispra" target="_blank" rel="noreferrer">
-              Support TinyWebP <ArrowRight aria-hidden="true" />
+              Support this tool <ArrowRight aria-hidden="true" />
             </a>
             <input
               type="file"
@@ -214,6 +213,13 @@ function Home() {
           </div>
         )}
 
+        {/*
+          Results and the Aidxn block sit SIDE BY SIDE once there is a result.
+          Stacked, the offer landed a full screen below the thing people came
+          for. The row class is only applied when results exist — otherwise the
+          CTA would render at ~40% width with empty space beside it.
+        */}
+        <div className={convertedImages.length > 0 ? 'outcome-row' : undefined}>
         {convertedImages.length > 0 && (
           <section className="results-panel" aria-labelledby="results-title">
             <div className="results-heading">
@@ -278,6 +284,7 @@ function Home() {
             </div>
           </div>
         </section>
+        </div>
       </main>
 
       <Footer />

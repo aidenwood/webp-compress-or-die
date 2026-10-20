@@ -28,7 +28,7 @@ function PrivacyPolicy() {
         <p className="text-sm mb-4">Effective Date: 12th February 2025</p>
 
         <p className="mb-4">
-          At <strong>TinyWebP</strong>, we respect your privacy. Here’s how we handle your data:
+          At <strong>Tiny WebP</strong>, we respect your privacy. Here’s how we handle your data:
         </p>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">1. Image Privacy</h2>
@@ -50,7 +50,7 @@ function PrivacyPolicy() {
 
         <h2 className="text-xl font-semibold mt-6 mb-2">3. Hosting & Security</h2>
         <p>
-          TinyWebP is hosted on Cloudflare, which provides security, caching, and performance optimization. Cloudflare may collect standard website logs, including IP addresses, to prevent abuse and ensure service stability.
+          Tiny WebP is hosted on Cloudflare, which provides security, caching, and performance optimization. Cloudflare may collect standard website logs, including IP addresses, to prevent abuse and ensure service stability.
         </p>
 
         <h2 className="text-xl font-semibold mt-6 mb-2">4. Third-Party Services</h2>
@@ -64,7 +64,7 @@ function PrivacyPolicy() {
 
         <h2 className="text-xl font-semibold mt-6 mb-2">5. Changes to This Policy</h2>
         <p>
-          We may update this policy as needed. Continued use of TinyWebP means you agree to the latest version.
+          We may update this policy as needed. Continued use of Tiny WebP means you agree to the latest version.
         </p>
 
         <p className="mt-6">For any concerns, contact us at <a href="mailto:hello@tinywebp.app" className="app-inline-link">hello@tinywebp.app</a>.</p>

@@ -961,3 +961,261 @@ label:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* ── Header: tools dropdown + account ──────────────────────────────────────
+   Added with the Aidxn chrome. The free tool is the top of a funnel, so the
+   header has to offer somewhere to go next without shouting over the one H1. */
+
+.tools-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.tools-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  padding: 0;
+}
+
+.tools-trigger svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 160ms ease;
+}
+
+.tools-trigger[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
+
+.tools-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 40;
+  display: grid;
+  width: 300px;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid var(--app-line);
+  border-radius: 14px;
+  background: var(--app-surface);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
+}
+
+.tools-item {
+  display: grid;
+  gap: 2px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  color: var(--app-text);
+  text-decoration: none;
+  transition: background 140ms ease;
+}
+
+.tools-item:hover {
+  background: color-mix(in srgb, var(--app-accent) 12%, transparent);
+}
+
+.tools-item-name {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.tools-item-desc {
+  color: var(--app-subtle);
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.tools-badge {
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--app-accent) 20%, transparent);
+  color: var(--app-accent-strong);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.header-login {
+  padding: 8px 15px;
+  border: 1px solid var(--app-line);
+  border-radius: 999px;
+  color: var(--app-text);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 160ms ease, color 160ms ease;
+}
+
+.header-login:hover {
+  border-color: var(--app-accent);
+  color: var(--app-accent-strong);
+}
+
+/* The dropdown is the first thing to go on a narrow header — the same links
+   are in the footer, so nothing becomes unreachable. */
+@media (max-width: 640px) {
+  .tools-menu,
+  .header-nav-link:not(.tools-trigger) {
+    display: none;
+  }
+}
+
+/* ── Results + CTA side by side ────────────────────────────────────────────
+   They were stacked, which pushed the Aidxn block a full screen below the
+   thing people came for. Horizontal until mobile puts the offer beside the
+   result at the moment the tool has just proved itself. */
+
+.outcome-row {
+  display: grid;
+  gap: 24px;
+  margin-top: 24px;
+  align-items: start;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+}
+
+.outcome-row > .results-panel,
+.outcome-row > .aidxn-cta {
+  margin-top: 0;
+}
+
+/* Single column below 900px — two columns of this content at tablet width
+   squeezes the filename rows, which are the part that has to stay readable. */
+@media (max-width: 900px) {
+  .outcome-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── Footer: Aidxn chrome ──────────────────────────────────────────────── */
+
+.footer-inner {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 34px 0 26px;
+}
+
+.footer-columns {
+  display: grid;
+  gap: 28px;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+@media (max-width: 700px) {
+  .footer-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.footer-col-title {
+  margin: 0 0 12px;
+  color: var(--app-subtle);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.footer-tools {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-tools li {
+  display: grid;
+  gap: 1px;
+}
+
+.footer-tools a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--app-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-tools a:hover {
+  color: var(--app-accent-strong);
+}
+
+.footer-tool-desc {
+  color: var(--app-subtle);
+  font-size: 11px;
+}
+
+.footer-col .footer-links {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.footer-credit {
+  justify-content: space-between;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--app-line);
+}
+
+.footer-upstream {
+  color: var(--app-subtle);
+}
+
+
+/* ── Aidxn brand mark ──────────────────────────────────────────────────────
+   Ported from velocity-components' aidxn-site-brand.css so this tool reads as
+   the same brand as aidxn.com rather than a lookalike. A dozen circles, no
+   asset request. */
+
+.brand-lockup-globe {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  flex: none;
+}
+
+.brand-lockup-globe svg {
+  width: 100%;
+  height: 100%;
+  perspective: 50px;
+}
+
+.brand-lockup-globe circle {
+  fill: none;
+  stroke: var(--app-accent);
+  stroke-width: 8px;
+}
+
+.brand-lockup-globe .bg-equator {
+  stroke: var(--app-text);
+  transform: rotateZ(-20deg) rotateX(125deg);
+}
+
+.brand-lockup-globe .bg-meridian {
+  transform: rotateZ(-20deg) rotateX(35deg) rotateY(var(--start));
+  animation: brand-lockup-turn 2s linear infinite;
+}
+
+@keyframes brand-lockup-turn {
+  to { transform: rotateZ(-20deg) rotateX(35deg) rotateY(var(--end)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-lockup-globe .bg-meridian { animation: none; }
+}
