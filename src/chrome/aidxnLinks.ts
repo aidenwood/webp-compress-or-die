@@ -12,6 +12,19 @@
  * that pay for the rest.
  */
 
+/**
+ * The apex the SSO cookie is scoped to.
+ *
+ * In velocity-components this came from that repo's `lib/urls.ts`. Here it
+ * lives with the rest of the chrome config so `src/chrome/` has no imports
+ * outside itself and can be lifted into the shared package untouched.
+ *
+ * Changing this changes which hosts share a session. It must stay the APEX —
+ * `aidxn.com`, not `webp.aidxn.com` — or the cookie scopes to this subdomain
+ * alone and the whole point is lost.
+ */
+export const AIDXN_APEX_HOST = 'aidxn.com';
+
 export interface AidxnTool {
   name: string;
   href: string;
@@ -50,16 +63,22 @@ export const AIDXN_TOOLS: AidxnTool[] = [
 ];
 
 /**
- * Account sign-in.
+ * The account menu, shown once a session is found.
  *
- * NOTE FOR WHOEVER MOVES THIS SITE: Aidxn's cross-subdomain SSO is a cookie
- * scoped to `Domain=.aidxn.com`. This site is served from
- * `webp-aidxn.netlify.app`, which is NOT under that domain, so a session
- * started on aidxn.com does not reach it and this link can only hand off to
- * the account area rather than reflect a signed-in state here.
- *
- * Putting the tool on `webp.aidxn.com` is what would make real SSO possible.
- * Until then this is deliberately a link out, not a login form that would
- * imply a session it cannot hold.
+ * This became real when the tool moved to webp.aidxn.com. The SSO cookie is
+ * scoped `Domain=.aidxn.com`, so on the old webp-aidxn.netlify.app address no
+ * session could reach it and "Sign in" could only ever be a link out. On the
+ * subdomain, a sign-in anywhere on *.aidxn.com is already a sign-in here.
  */
-export const ACCOUNT_URL = 'https://aidxn.com/dashboard/';
+export interface AccountLink {
+  name: string;
+  href: string;
+}
+
+export const ACCOUNT_LINKS: AccountLink[] = [
+  { name: 'Dashboard', href: 'https://aidxn.com/dashboard/' },
+  { name: 'Licenses', href: 'https://aidxn.com/dashboard/licenses/' },
+  { name: 'Account', href: 'https://aidxn.com/dashboard/account/' },
+];
+
+export const SIGN_IN_URL = 'https://aidxn.com/login/';

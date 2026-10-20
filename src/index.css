@@ -1219,3 +1219,142 @@ label:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .brand-lockup-globe .bg-meridian { animation: none; }
 }
+
+
+/* ── Aidxn shared header: fullscreen → floating pill ───────────────────────
+   Ported from aidxn.com's Header-Minimal.astro. Same 28px trigger, same
+   easing, same reversion to full width on mobile — a floating pill on a phone
+   just steals width it cannot spare. */
+
+.ax-header {
+  position: sticky;
+  z-index: 40;
+  top: 0;
+  width: 100%;
+  margin-inline: auto;
+  border-bottom: 1px solid var(--app-line);
+  background: color-mix(in srgb, var(--app-bg) 82%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition:
+    width 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    border-radius 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.4s ease,
+    box-shadow 0.55s ease;
+}
+
+.ax-header.is-scrolled {
+  top: 12px;
+  width: min(1160px, calc(100% - 24px));
+  border: 1px solid var(--app-line);
+  border-radius: 999px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.28);
+}
+
+.ax-header-inner {
+  display: flex;
+  width: min(1160px, calc(100% - 48px));
+  height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ax-header.is-scrolled .ax-header-inner {
+  height: 4rem;
+  width: calc(100% - 36px);
+}
+
+@media (max-width: 767px) {
+  .ax-header.is-scrolled {
+    top: 0;
+    width: 100%;
+    border-radius: 0;
+    border-inline: 0;
+    border-top: 0;
+    box-shadow: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ax-header,
+  .ax-header-inner {
+    transition: none;
+  }
+}
+
+/* Lockup: app name over the studio byline, so a shared header still says
+   which app you are in. */
+.brand-stack {
+  display: grid;
+  line-height: 1.1;
+}
+
+.brand-app {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+/* ── Account corner ──────────────────────────────────────────────────────── */
+
+.account-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 5px 5px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.account-trigger svg {
+  width: 13px;
+  height: 13px;
+}
+
+.account-avatar {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--app-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.account-panel {
+  width: 220px;
+}
+
+.account-email {
+  margin: 0 0 4px;
+  padding: 7px 10px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--app-line);
+  color: var(--app-subtle);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-signout {
+  width: 100%;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.account-signout .tools-item-name {
+  color: var(--app-muted);
+}
+
+.account-signout svg {
+  width: 13px;
+  height: 13px;
+}
