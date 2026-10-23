@@ -67,7 +67,7 @@ function How() {
 
         <h2 className="text-xl font-semibold mt-6 mb-2">5. Additional Information</h2>
         <p>
-          If you have any questions or need further assistance, feel free to reach out to us via email at <a href="mailto:hello@tinywebp.app" className="app-inline-link">hello@tinywebp.app</a>.
+          If you have any questions or need further assistance, feel free to reach out to us via email at <a href="mailto:hi@aidxn.com" className="app-inline-link">hi@aidxn.com</a>.
         </p>
       </main>
 

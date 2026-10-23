@@ -1,0 +1,5 @@
+# webp.aidxn.com — Tiny WebP, a free in-browser image compressor.
+User-agent: *
+Allow: /
+
+Sitemap: https://webp.aidxn.com/sitemap.xml

@@ -67,7 +67,7 @@ function PrivacyPolicy() {
           We may update this policy as needed. Continued use of Tiny WebP means you agree to the latest version.
         </p>
 
-        <p className="mt-6">For any concerns, contact us at <a href="mailto:hello@tinywebp.app" className="app-inline-link">hello@tinywebp.app</a>.</p>
+        <p className="mt-6">For any concerns, contact us at <a href="mailto:hi@aidxn.com" className="app-inline-link">hi@aidxn.com</a>.</p>
       </main>
 
       {/* Footer */}

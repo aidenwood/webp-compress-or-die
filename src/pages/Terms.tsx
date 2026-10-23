@@ -55,7 +55,7 @@ function Terms() {
         <h2 className="text-xl font-semibold mt-6 mb-2">4. Changes to Terms</h2>
         <p>We may update these terms from time to time. Continued use of Tiny WebP means you accept any modifications.</p>
 
-        <p className="mt-6">For questions, contact us at <a href="mailto:hello@tinywebp.app" className="app-inline-link">hello@tinywebp.app</a>.</p>
+        <p className="mt-6">For questions, contact us at <a href="mailto:hi@aidxn.com" className="app-inline-link">hi@aidxn.com</a>.</p>
       </main>
 
       {/* Footer */}

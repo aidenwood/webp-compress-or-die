@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Hosted at webp.aidxn.com. This file previously listed https://tinywebp.app/
+  — the upstream project this was forked from — so the sitemap advertised a
+  different domain and published zero URLs for this one. Routes below match
+  src/App.tsx.
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://tinywebp.app/</loc>
-        <lastmod>2025-02-12</lastmod>
-        <changefreq>weekly</changefreq>
+        <loc>https://webp.aidxn.com/</loc>
+        <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tinywebp.app/how-to-use</loc>
-        <lastmod>2025-02-12</lastmod>
-        <changefreq>monthly</changefreq>
+        <loc>https://webp.aidxn.com/how-to-use</loc>
+        <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://tinywebp.app/privacy-policy</loc>
-        <lastmod>2025-02-12</lastmod>
+        <loc>https://webp.aidxn.com/privacy-policy</loc>
         <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
+        <priority>0.3</priority>
     </url>
     <url>
-        <loc>https://tinywebp.app/terms-and-conditions</loc>
-        <lastmod>2025-02-12</lastmod>
+        <loc>https://webp.aidxn.com/terms-and-conditions</loc>
         <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
+        <priority>0.3</priority>
     </url>
 </urlset>
