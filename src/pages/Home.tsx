@@ -163,127 +163,129 @@ function Home() {
       <Header theme={theme} toggleTheme={toggleTheme} />
 
       <main className="app-main">
-        <section className="home-intro" aria-labelledby="home-title">
-          <h1 id="home-title">Tiny WebP Image Compression, Completely Free, Blazing Fast.</h1>
-          <p className="home-summary">
-            Compress images in your browser, then download WebP files one by one or together.
-          </p>
-          <div className="privacy-note"><span aria-hidden="true" />Your images are processed locally. No file upload.</div>
-        </section>
+        <div className="converter-workspace">
+          <div className="converter-workspace-main">
+            <section className="home-intro" aria-labelledby="home-title">
+              <h1 id="home-title">Tiny WebP Image Compression, Completely Free, Blazing Fast.</h1>
+              <p className="home-summary">
+                Compress images in your browser, then download WebP files one by one or together.
+              </p>
+              <div className="privacy-note"><span aria-hidden="true" />Your images are processed locally. No file upload.</div>
+            </section>
 
-        <section className={`converter-panel ${isDragging ? 'is-dragging' : ''}`} aria-label="Image converter">
-          <div
-            className="converter-drop-area"
-            onDragOver={(e) => {
-              e.preventDefault();
-              setIsDragging(true);
-            }}
-            onDragLeave={() => setIsDragging(false)}
-            onDrop={handleDrop}
-          >
-            <a className="support-link" href="https://buymeacoffee.com/iamispra" target="_blank" rel="noreferrer">
-              Support this tool <ArrowRight aria-hidden="true" />
-            </a>
-            <input
-              type="file"
-              accept="image/jpeg,image/png,image/gif,image/tiff,image/bmp,image/webp,image/avif"
-              multiple
-              onChange={handleFileSelect}
-              className="file-input"
-              id="file-upload"
-            />
-            <label htmlFor="file-upload" className="upload-dropzone">
-              <span className="upload-icon-wrap"><Upload className="upload-icon" aria-hidden="true" /></span>
-              <span className="upload-title">Drop your images here</span>
-              <span className="upload-hint">or click to browse</span>
-              <span className="format-list" aria-label="Supported formats">
-                {['JPG', 'PNG', 'GIF', 'TIFF', 'BMP', 'WEBP', 'AVIF *'].map((format) => (
-                  <span className="format-tag" key={format}>{format}</span>
-                ))}
-              </span>
-              <span className="format-note">* AVIF conversion is experimental.</span>
-            </label>
-          </div>
-        </section>
-
-        {isConverting && (
-          <div className="conversion-status" role="status" aria-live="polite">
-            <span className="conversion-spinner" />
-            <span>Converting your images…</span>
-          </div>
-        )}
-
-        {/*
-          Results and the Aidxn block sit SIDE BY SIDE once there is a result.
-          Stacked, the offer landed a full screen below the thing people came
-          for. The row class is only applied when results exist — otherwise the
-          CTA would render at ~40% width with empty space beside it.
-        */}
-        <div className={convertedImages.length > 0 ? 'outcome-row' : undefined}>
-        {convertedImages.length > 0 && (
-          <section className="results-panel" aria-labelledby="results-title">
-            <div className="results-heading">
-              <div>
-                <p className="app-eyebrow">READY TO DOWNLOAD</p>
-                <h2 id="results-title">Converted images</h2>
+            <section className={`converter-panel ${isDragging ? 'is-dragging' : ''}`} aria-label="Image converter">
+              <div
+                className="converter-drop-area"
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragLeave={() => setIsDragging(false)}
+                onDrop={handleDrop}
+              >
+                <a className="support-link" href="https://buymeacoffee.com/iamispra" target="_blank" rel="noreferrer">
+                  Support this tool <ArrowRight aria-hidden="true" />
+                </a>
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/gif,image/tiff,image/bmp,image/webp,image/avif"
+                  multiple
+                  onChange={handleFileSelect}
+                  className="file-input"
+                  id="file-upload"
+                />
+                <label htmlFor="file-upload" className="upload-dropzone">
+                  <span className="upload-icon-wrap"><Upload className="upload-icon" aria-hidden="true" /></span>
+                  <span className="upload-title">Drop your images here</span>
+                  <span className="upload-hint">or click to browse</span>
+                  <span className="format-list" aria-label="Supported formats">
+                    {['JPG', 'PNG', 'GIF', 'TIFF', 'BMP', 'WEBP', 'AVIF *'].map((format) => (
+                      <span className="format-tag" key={format}>{format}</span>
+                    ))}
+                  </span>
+                  <span className="format-note">* AVIF conversion is experimental.</span>
+                </label>
               </div>
-              <div className="results-actions">
-                <span className="savings-total">{formatSize(totalSavings)} saved</span>
-                <button onClick={handleDownloadAll} disabled={isZipping} className="button-secondary">
-                  <Package aria-hidden="true" />
-                  <span>{isZipping ? 'Creating ZIP…' : 'Download all'}</span>
-                </button>
+            </section>
+
+            {isConverting && (
+              <div className="conversion-status" role="status" aria-live="polite">
+                <span className="conversion-spinner" />
+                <span>Converting your images…</span>
               </div>
-            </div>
-            <div className="result-list">
-              {convertedImages.map((image, index) => (
-                <article key={`${image.originalName}-${index}`} className="result-row">
-                  <div className="result-file-icon"><ImageIcon aria-hidden="true" /></div>
-                  <div className="result-file-info">
-                    <p className="result-filename">{image.originalName}.webp</p>
-                    <p className="result-meta">
-                      <span>{formatSize(image.originalSize)}</span>
-                      <ArrowRight aria-hidden="true" />
-                      <span>{formatSize(image.convertedSize)}</span>
-                      <span className="result-savings">{calculateSavings(image.originalSize, image.convertedSize)} saved</span>
-                    </p>
-                  </div>
-                  <div className="result-controls">
-                    <button onClick={() => handleRemove(index)} className="icon-button" aria-label={`Remove ${image.originalName}`}>
-                      <Trash2 aria-hidden="true" />
-                    </button>
-                    <button onClick={() => handleDownload(image)} className="button-secondary">
-                      <Download aria-hidden="true" />
-                      <span>Download</span>
+            )}
+          </div>
+
+          <aside className="converter-sidebar" aria-label="Downloads and Aidxn Design">
+            <section className="results-panel" aria-labelledby="results-title">
+              <div className="results-heading">
+                <div>
+                  <p className="app-eyebrow">{convertedImages.length > 0 ? 'READY TO DOWNLOAD' : 'YOUR WEBP FILES'}</p>
+                  <h2 id="results-title">Downloads</h2>
+                </div>
+                {convertedImages.length > 0 && (
+                  <div className="results-actions">
+                    <span className="savings-total">{formatSize(totalSavings)} saved</span>
+                    <button onClick={handleDownloadAll} disabled={isZipping} className="button-secondary">
+                      <Package aria-hidden="true" />
+                      <span>{isZipping ? 'Creating ZIP…' : 'Download all'}</span>
                     </button>
                   </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
+                )}
+              </div>
+              {convertedImages.length === 0 ? (
+                <p className="results-empty">Your converted images will appear here, ready to download.</p>
+              ) : (
+                <div className="result-list">
+                  {convertedImages.map((image, index) => (
+                    <article key={`${image.originalName}-${index}`} className="result-row">
+                      <div className="result-file-icon"><ImageIcon aria-hidden="true" /></div>
+                      <div className="result-file-info">
+                        <p className="result-filename">{image.originalName}.webp</p>
+                        <p className="result-meta">
+                          <span>{formatSize(image.originalSize)}</span>
+                          <ArrowRight aria-hidden="true" />
+                          <span>{formatSize(image.convertedSize)}</span>
+                          <span className="result-savings">{calculateSavings(image.originalSize, image.convertedSize)} saved</span>
+                        </p>
+                      </div>
+                      <div className="result-controls">
+                        <button onClick={() => handleRemove(index)} className="icon-button" aria-label={`Remove ${image.originalName}`}>
+                          <Trash2 aria-hidden="true" />
+                        </button>
+                        <button onClick={() => handleDownload(image)} className="button-secondary">
+                          <Download aria-hidden="true" />
+                          <span>Download</span>
+                        </button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              )}
+            </section>
 
-        <section className="aidxn-cta" aria-labelledby="aidxn-cta-title">
-          <div className="cta-ascii" aria-hidden="true">
-            <AsciiFx mode="wave" speed={0.18} cell={13} accentGradient className="absolute inset-0" />
-          </div>
-          <div className="cta-content">
-            <p className="app-eyebrow">AIDXN DESIGN</p>
-            <h2 id="aidxn-cta-title">Everything your business needs online.</h2>
-            <div className="cta-actions">
-              <a href="https://aidxn.com/web-design/" target="_blank" rel="noreferrer" className="button-primary">
-                Website Design <ArrowRight aria-hidden="true" />
-              </a>
-              <a href="https://ui.aidxn.com/components/" target="_blank" rel="noreferrer" className="button-quiet">
-                VX Components
-              </a>
-            </div>
-            <div className="cta-secondary-links">
-              <a href="https://aidxn.com/services/" target="_blank" rel="noreferrer">View all services</a>
-              <a href="https://aidxn.com/enquire/" target="_blank" rel="noreferrer">Start a project</a>
-            </div>
-          </div>
-        </section>
+            <section className="aidxn-cta" aria-labelledby="aidxn-cta-title">
+              <div className="cta-ascii" aria-hidden="true">
+                <AsciiFx mode="wave" speed={0.18} cell={13} accentGradient className="absolute inset-0" />
+              </div>
+              <div className="cta-content">
+                <p className="app-eyebrow">AIDXN DESIGN</p>
+                <h2 id="aidxn-cta-title">Everything your business needs online.</h2>
+                <div className="cta-actions">
+                  <a href="https://aidxn.com/web-design/" target="_blank" rel="noreferrer" className="button-primary">
+                    Website Design <ArrowRight aria-hidden="true" />
+                  </a>
+                  <a href="https://ui.aidxn.com/components/" target="_blank" rel="noreferrer" className="button-quiet">
+                    VX Components
+                  </a>
+                </div>
+                <div className="cta-secondary-links">
+                  <a href="https://aidxn.com/services/" target="_blank" rel="noreferrer">View all services</a>
+                  <a href="https://aidxn.com/enquire/" target="_blank" rel="noreferrer">Start a project</a>
+                </div>
+              </div>
+            </section>
+          </aside>
         </div>
       </main>
 

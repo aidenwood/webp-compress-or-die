@@ -128,16 +128,14 @@ label:focus-visible {
 .app-main {
   position: relative;
   z-index: 1;
-  width: min(960px, calc(100% - 40px));
+  width: min(1200px, calc(100% - 48px));
   flex: 1;
   align-self: center;
-  padding: 68px 0 72px;
+  padding: 24px 0 56px;
 }
 
 .home-intro {
-  max-width: 790px;
-  margin: 0 auto 38px;
-  text-align: center;
+  margin: 0 0 18px;
 }
 
 .app-eyebrow {
@@ -151,27 +149,27 @@ label:focus-visible {
 }
 
 .home-intro h1 {
-  max-width: 780px;
-  margin: 16px auto 0;
-  font-size: clamp(38px, 6vw, 70px);
+  margin: 0;
+  font-size: clamp(30px, 3vw, 36px);
   font-weight: 590;
   letter-spacing: -0.075em;
-  line-height: 0.99;
+  line-height: 1.06;
+  text-wrap: balance;
 }
 
 .home-summary {
-  max-width: 570px;
-  margin: 20px auto 0;
+  max-width: 620px;
+  margin: 12px 0 0;
   color: var(--app-muted);
-  font-size: 16px;
-  line-height: 1.65;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 .privacy-note {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 18px;
+  margin-top: 10px;
   color: var(--app-subtle);
   font-size: 12px;
 }
@@ -200,7 +198,7 @@ label:focus-visible {
 
 .converter-drop-area {
   position: relative;
-  padding: 22px;
+  padding: 18px;
 }
 
 .support-link {
@@ -238,11 +236,11 @@ label:focus-visible {
 
 .upload-dropzone {
   display: flex;
-  min-height: 320px;
+  min-height: 280px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 24px 36px;
+  padding: 44px 20px 28px;
   border: 1px dashed color-mix(in srgb, var(--app-muted) 36%, transparent);
   border-radius: 16px;
   background: var(--app-raised);
@@ -259,8 +257,8 @@ label:focus-visible {
 
 .upload-icon-wrap {
   display: grid;
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   place-items: center;
   border: 1px solid color-mix(in srgb, var(--app-accent) 25%, var(--app-line));
   border-radius: 21px;
@@ -275,7 +273,7 @@ label:focus-visible {
 }
 
 .upload-title {
-  margin-top: 24px;
+  margin-top: 18px;
   color: var(--app-text);
   font-size: 19px;
   font-weight: 620;
@@ -293,7 +291,7 @@ label:focus-visible {
   flex-wrap: wrap;
   justify-content: center;
   gap: 7px;
-  margin-top: 22px;
+  margin-top: 16px;
 }
 
 .format-tag {
@@ -740,11 +738,11 @@ label:focus-visible {
 @media (max-width: 680px) {
   .app-main {
     width: calc(100% - 28px);
-    padding: 50px 0 56px;
+    padding: 24px 0 40px;
   }
 
   .home-intro {
-    margin-bottom: 28px;
+    margin-bottom: 22px;
   }
 
   .home-intro h1 {
@@ -766,8 +764,8 @@ label:focus-visible {
   }
 
   .upload-dropzone {
-    min-height: 290px;
-    padding: 58px 15px 28px;
+    min-height: 260px;
+    padding: 48px 15px 24px;
   }
 
   .results-heading,
@@ -847,7 +845,7 @@ label:focus-visible {
 
 @media (max-width: 390px) {
   .home-intro h1 {
-    font-size: 38px;
+    font-size: 30px;
   }
 
   .result-file-icon {
@@ -871,29 +869,126 @@ label:focus-visible {
    .tools-item*, .header-login) are owned by @aidxn/chrome now — see
    chrome.css, imported in main.tsx. */
 
-/* ── Results + CTA side by side ────────────────────────────────────────────
-   They were stacked, which pushed the Aidxn block a full screen below the
-   thing people came for. Horizontal until mobile puts the offer beside the
-   result at the moment the tool has just proved itself. */
-
-.outcome-row {
+/* Keep the working area and download/CTA sidebar in the first desktop view. */
+.converter-workspace {
   display: grid;
   gap: 24px;
-  margin-top: 24px;
   align-items: start;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
 }
 
-.outcome-row > .results-panel,
-.outcome-row > .aidxn-cta {
+.converter-workspace-main,
+.converter-sidebar {
+  min-width: 0;
+}
+
+.converter-sidebar {
+  display: grid;
+  gap: 18px;
+}
+
+.converter-sidebar > .results-panel,
+.converter-sidebar > .aidxn-cta {
   margin-top: 0;
 }
 
-/* Single column below 900px — two columns of this content at tablet width
-   squeezes the filename rows, which are the part that has to stay readable. */
-@media (max-width: 900px) {
-  .outcome-row {
-    grid-template-columns: minmax(0, 1fr);
+.results-empty {
+  margin: 0;
+  padding: 18px 20px;
+  color: var(--app-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (min-width: 1000px) {
+  .converter-workspace {
+    grid-template-columns: minmax(0, 1fr) 380px;
+  }
+
+  .converter-sidebar {
+    position: sticky;
+    top: 100px;
+  }
+
+  .converter-sidebar .results-heading {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 20px;
+  }
+
+  .converter-sidebar .results-heading h2 {
+    font-size: 22px;
+  }
+
+  .converter-sidebar .results-actions {
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .converter-sidebar .result-list {
+    max-height: 160px;
+    overflow-y: auto;
+  }
+
+  .converter-sidebar .result-row {
+    gap: 9px;
+    padding: 14px;
+  }
+
+  .converter-sidebar .result-file-icon {
+    display: none;
+  }
+
+  .converter-sidebar .result-controls {
+    gap: 6px;
+  }
+
+  .converter-sidebar .result-controls .icon-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .converter-sidebar .result-controls .button-secondary {
+    min-height: 36px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .converter-sidebar .result-meta {
+    flex-wrap: wrap;
+    font-size: 10px;
+  }
+
+  .converter-sidebar .aidxn-cta,
+  .converter-sidebar .cta-content {
+    min-height: 0;
+  }
+
+  .converter-sidebar .cta-content {
+    padding: 24px;
+  }
+
+  .converter-sidebar .cta-content h2 {
+    font-size: 30px;
+    line-height: 1.06;
+  }
+
+  .converter-sidebar .cta-actions {
+    margin-top: 20px;
+  }
+
+  .converter-sidebar .cta-actions a {
+    min-height: 40px;
+    padding-inline: 13px;
+  }
+
+  .converter-sidebar .cta-secondary-links {
+    gap: 16px;
+  }
+
+  .converter-sidebar .cta-secondary-links a {
+    font-size: 11px;
   }
 }
 
