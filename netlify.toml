@@ -5,6 +5,22 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# ── Canonical host ─────────────────────────────────────────────────────────
+# Netlify keeps the *.netlify.app hostname serving 200 even once a custom
+# domain is primary, so the same content was live on two hosts. Every page
+# already canonicals to webp.aidxn.com, but a canonical tag is a hint and a
+# 301 is not — and until 2026-11-03 the only inbound link from an indexed
+# page (aidxn.com/tools/) pointed at the netlify.app host, so what little
+# link equity existed landed on the URL Google is told to ignore.
+#
+# MUST come before the SPA fallback below: Netlify evaluates redirects in
+# order and the /* rule would swallow every request first.
+[[redirects]]
+  from = "https://webp-aidxn.netlify.app/*"
+  to = "https://webp.aidxn.com/:splat"
+  status = 301
+  force = true
+
 # SPA fallback — react-router handles /terms-and-conditions, /privacy-policy,
 # /how-to-use and the 404 route client-side. Without this a hard refresh or a
 # Google/ad click straight onto a deep link returns Netlify's 404 page.
