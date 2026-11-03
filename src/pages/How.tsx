@@ -1,10 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import seoContent from '../data/seo-content.json';
 
+/**
+ * /how-to-use
+ *
+ * The numbered steps render from src/data/seo-content.json, which is the SAME
+ * file scripts/seo-build.mjs uses to emit the HowTo JSON-LD for this page.
+ * Google requires structured data to describe content the user can actually
+ * see — when this page listed upstream's steps while the schema described a
+ * different four, that was a guidelines violation, not a cosmetic mismatch.
+ * Edit the JSON; never hand-write steps here.
+ */
 function How() {
   const [theme, setTheme] = useState<'light' | 'dark'>(
-    localStorage.getItem('theme') as 'light' | 'dark' || 
+    localStorage.getItem('theme') as 'light' | 'dark' ||
     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
   );
 
@@ -19,57 +30,71 @@ function How() {
 
   return (
     <div className="app-shell">
-      {/* Header with Theme Toggle */}
       <Header theme={theme} toggleTheme={toggleTheme} />
 
-      {/* How to Use Content */}
       <main className="app-page app-legal-content">
-        <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">How to Use Tiny WebP</h1>
-        
+        <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+          How to compress images to WebP
+        </h1>
+
         <p className="mb-4">
-          Welcome to Tiny WebP! This tool allows you to easily compress images directly from your browser.
-          Here's how to use it:
+          This converter runs entirely inside your browser. Your images are never
+          uploaded, so the whole thing works on a flaky connection and leaves
+          nothing on a server afterwards. Four steps:
         </p>
 
-        <h2 className="text-xl font-semibold mt-6 mb-2">1. Upload Your Image</h2>
+        {seoContent.howToSteps.map((step, i) => (
+          <section key={step.name} id={`step-${i + 1}`}>
+            <h2 className="text-xl font-semibold mt-6 mb-2">
+              {i + 1}. {step.name}
+            </h2>
+            <p>{step.text}</p>
+          </section>
+        ))}
+
+        <h2 className="text-xl font-semibold mt-6 mb-2">Why WebP?</h2>
         <p>
-          Drop your images into the section labeled <strong>"Drop your images here"</strong>, or simply click the <strong>"click to browse"</strong> link and select the image you'd like to compress. No registration or account is needed.
+          WebP usually lands 25–35% smaller than a JPEG of comparable quality,
+          and far smaller than PNG for photographs — while still supporting
+          transparency, which JPEG does not. Every current browser displays it,
+          including Safari since version 14. For most sites it is simply the
+          better default, and smaller images mean faster pages.
         </p>
 
-        <h2 className="text-xl font-semibold mt-6 mb-2">2. Wait for Compression</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-2">Video walkthrough</h2>
         <p>
-          Tiny WebP will automatically compress the image directly in your browser. This process does not upload your image to our servers.
+          A walkthrough from{' '}
+          <a
+            href="https://isuru.info"
+            target="_blank"
+            rel="noreferrer"
+            className="app-inline-link"
+          >
+            TinyWebP
+          </a>
+          , the upstream project this tool is forked from. The interface differs
+          from the one here, but the workflow is the same.
         </p>
 
-        <h2 className="text-xl font-semibold mt-6 mb-2">3. Download the Compressed Image</h2>
-        <p>
-          Once the compression is complete, you can easily download the compressed image directly to your device.
-        </p>
-
-        <h2 className="text-xl font-semibold mt-6 mb-2">4. Watch the Tutorial Video</h2>
-        <p>
-          If you prefer visual instructions, check out the tutorial video below:
-        </p>
-
-        {/* Embedding YouTube video */}
         <div className="my-8 aspect-video">
           <iframe
             className="w-full h-full"
-            src="https://www.youtube.com/embed/JBz-vB2-Ykg" // Replace with your YouTube video ID
-            title="Tiny WebP - Convert Images to WebP"
+            src="https://www.youtube-nocookie.com/embed/JBz-vB2-Ykg"
+            title="Converting images to WebP — walkthrough"
+            loading="lazy"
             frameBorder="0"
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
         </div>
 
-        <h2 className="text-xl font-semibold mt-6 mb-2">5. Additional Information</h2>
+        <h2 className="text-xl font-semibold mt-6 mb-2">Need a hand?</h2>
         <p>
-          If you have any questions or need further assistance, feel free to reach out to us via email at <a href="mailto:hi@aidxn.com" className="app-inline-link">hi@aidxn.com</a>.
+          Questions, or something not working the way you expect? Email{' '}
+          <a href="mailto:hi@aidxn.com" className="app-inline-link">hi@aidxn.com</a>.
         </p>
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

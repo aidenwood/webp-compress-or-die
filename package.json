@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/seo-build.mjs",
+    "build": "vite build && node scripts/seo-build.mjs && node scripts/check-seo.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "chrome:check": "node scripts/chrome-check.mjs",
     "prebuild": "node scripts/chrome-check.mjs",
-    "seo": "node scripts/seo-build.mjs"
+    "seo": "node scripts/seo-build.mjs",
+    "check-seo": "node scripts/check-seo.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",
