@@ -4,6 +4,7 @@ import JSZip from 'jszip';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AsciiFx from '../components/AsciiFx';
+import seoContent from '../data/seo-content.json';
 
 interface ConvertedImage {
   originalName: string;
@@ -286,6 +287,23 @@ function Home() {
               </div>
             </section>
           </aside>
+
+            {/* Visible FAQ. The FAQPage JSON-LD in the built HTML describes
+                EXACTLY these questions — Google requires structured data to
+                reflect content the user can see, so both read from
+                src/data/seo-content.json. Never add schema for copy that is
+                not rendered here. */}
+            <section className="faq-section" aria-labelledby="faq-title">
+              <h2 id="faq-title">WebP, answered</h2>
+              <div className="faq-list">
+                {seoContent.faq.map((item, i) => (
+                  <details key={i} className="faq-item" open={i === 0}>
+                    <summary>{item.q}</summary>
+                    <p>{item.a}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
         </div>
       </main>
 

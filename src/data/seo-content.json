@@ -1,0 +1,49 @@
+{
+  "_comment": "Shared by the React pages AND scripts/seo-build.mjs. Google requires FAQPage/HowTo structured data to describe content that is actually VISIBLE on the page — shipping schema for copy a user cannot see is a guidelines violation. One file means the markup and the rendered page cannot drift into that state.",
+
+  "faq": [
+    {
+      "q": "Is this WebP converter really free?",
+      "a": "Yes. No account, no upload limit, no watermark and no paid tier. The compression runs on your own machine, so there is no server cost to pass on."
+    },
+    {
+      "q": "Are my images uploaded to a server?",
+      "a": "No. Everything happens inside your browser. Your files never leave your device, which also means it keeps working if your connection drops after the page has loaded."
+    },
+    {
+      "q": "How much smaller is WebP than JPG or PNG?",
+      "a": "WebP usually lands 25–35% smaller than a JPEG of comparable quality, and far smaller than PNG for photographic content. The exact saving depends on the image, so the tool shows you the before and after size for every file."
+    },
+    {
+      "q": "Can I convert PNG to WebP without losing transparency?",
+      "a": "Yes. WebP supports an alpha channel, so transparent PNGs stay transparent after conversion."
+    },
+    {
+      "q": "Which browsers support WebP?",
+      "a": "Every current browser. Chrome, Edge, Firefox and Safari all display WebP, including on mobile. Safari added support in version 14 back in 2020, so WebP is now safe to use as a default web image format."
+    },
+    {
+      "q": "Can I convert several images at once?",
+      "a": "Yes. Drop in a batch and download the results individually or as a single zip."
+    }
+  ],
+
+  "howToSteps": [
+    {
+      "name": "Add your images",
+      "text": "Drop files onto the drop zone, or click to browse. JPG, PNG and GIF all work, and you can add a batch at once. No account needed."
+    },
+    {
+      "name": "Choose your quality",
+      "text": "Adjust the quality setting to trade file size against visual fidelity. Around 80 is the usual sweet spot for web images."
+    },
+    {
+      "name": "Check the result",
+      "text": "Compare the original and compressed sizes before you commit. If the saving is not worth the quality loss, change the setting and run it again."
+    },
+    {
+      "name": "Download",
+      "text": "Save each converted file, or grab the whole batch as a zip."
+    }
+  ]
+}

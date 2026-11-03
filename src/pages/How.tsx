@@ -25,9 +25,7 @@ function How() {
       {/* How to Use Content */}
       <main className="app-page app-legal-content">
         <h1 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">How to Use Tiny WebP</h1>
-        <p className="text-sm">Author: Isuru Prabath</p>
-        <p className="text-sm mb-4">Updated on: 12th February 2025</p>
-
+        
         <p className="mb-4">
           Welcome to Tiny WebP! This tool allows you to easily compress images directly from your browser.
           Here's how to use it:

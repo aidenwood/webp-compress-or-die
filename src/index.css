@@ -1074,3 +1074,68 @@ label:focus-visible {
 /* The brand globe (.brand-lockup-globe), the shared pill header (.ax-header
    family, .brand-stack, .brand-app) and the account corner (.account-*) are
    all owned by @aidxn/chrome now — see chrome.css, imported in main.tsx. */
+
+/* ── FAQ ───────────────────────────────────────────────────────────────────
+   Visible counterpart to the FAQPage JSON-LD emitted by scripts/seo-build.mjs.
+   Both render from src/data/seo-content.json: structured data must describe
+   content a user can actually see, so these cannot be allowed to drift. */
+
+.faq-section {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border, rgba(128, 128, 128, 0.22));
+}
+
+.faq-section h2 {
+  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.faq-item {
+  border: 1px solid var(--border, rgba(128, 128, 128, 0.22));
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  background: var(--panel, transparent);
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Safari still paints its own disclosure triangle without this. */
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: '+';
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1;
+  opacity: 0.5;
+  transition: transform 0.18s ease;
+}
+
+.faq-item[open] summary::after { content: '\2212'; }
+
+.faq-item p {
+  margin: 0.7rem 0 0.1rem;
+  opacity: 0.82;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item summary::after { transition: none; }
+}
